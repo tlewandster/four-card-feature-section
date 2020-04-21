@@ -4,6 +4,8 @@ $Cyan: hsl(180, 62%, 55%);
 $Orange: hsl(34, 97%, 64%);
 $Blue: hsl(212, 86%, 64%);
 
+$top-shadow-colors: $Cyan, $Red, $Orange, $Blue;
+
 // Neutral colors
 $VeryDarkBlue: hsl(234, 12%, 34%);
 $GrayishBlue: hsl(229, 6%, 66%);
@@ -23,24 +25,18 @@ body {
   font-size: 15px;
   color: $GrayishBlue;
   background-color: $VeryLightGray;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 80%;
   margin: auto;
 }
 
-.title {
+header {
   margin: 5em 0;
   text-align: center;
   h1 {
     font-size: 1.6em;
     font-weight: 200;
     color: $VeryDarkBlue;
-    &.bold{
+    &.bold {
       font-weight: 600;
     }
   }
@@ -49,6 +45,35 @@ main {
   }
 }
 
-.card {
-  background-color: white;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    margin-bottom: 3em;
+    background-color: white;
+    width: 375px * 0.8;
+    border-radius: 0.3em;
+    @for $i from 1 through length($top-shadow-colors) {
+      &:nth-of-type(#{$i}) {
+        box-shadow:0 10px 20px -10px $GrayishBlue, 0 -4px nth($top-shadow-colors,$i);
+      }
+    }
+    h3{
+      color: $VeryDarkBlue;
+      font-size: 1.2em;
+    }
+    p{
+      margin: 1em 0;
+      font-size: 0.8em;
+      line-height: 2em;
+    }
+    img{
+      align-self: flex-end;
+      margin: 0.5em 0;
+    }
+  }
 }
